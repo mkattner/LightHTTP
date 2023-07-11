@@ -80,6 +80,16 @@ namespace LightHTTP
         }
 
         /// <summary>
+        /// Defines a handler for the folder.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void HandlesFolder(this ILightHttpHandlerRegistry registry, string path, LightHttpAsyncHandleDelegate handle,
+            StringComparison comparisonType = StringComparison.InvariantCultureIgnoreCase)
+        {
+            registry.Handles(p => p.StartsWith(path, comparisonType), handle);
+        }
+
+        /// <summary>
         /// Defines a handler for any path matched by <paramref name="pathRegex"/>.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
